@@ -1,6 +1,7 @@
-import { connectToDatabase } from "../../util/mongodb";
+import { session } from 'next-auth/client';
+import { connectToDatabase } from '../../util/mongodb';
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
   const { items, email } = req.body;
@@ -10,7 +11,7 @@ export default async (req, res) => {
     //await db.collection("temp").deleteMany({ user: email });
     //to delete temp doc in 56 days automatically. run only one time
     //await db.collection("temp").createIndex({ "createdAt": 1 }, { expireAfterSeconds:4838400 })
-    const result = await db.collection("temp").insertOne({
+    const result = await db.collection('temp').insertOne({
       user: email,
       items,
       createdAt: new Date(),
@@ -19,7 +20,7 @@ export default async (req, res) => {
       description: item.description,
       quantity: item.qty,
       price_data: {
-        currency: "INR",
+        currency: 'INR',
         //unit_amount_decimal  insted to unit_amount for decimal
         unit_amount: item.price * 100,
         product_data: {
@@ -30,13 +31,13 @@ export default async (req, res) => {
     }));
     try {
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        shipping_rates: ["shr_1J1z9cSILNiInkjsOUxwYnGT"],
+        payment_method_types: ['card'],
+        shipping_rates: ['shr_1OpMLCLVwqnQn2QBdWYDB1lP'],
         shipping_address_collection: {
-          allowed_countries: ["GB", "US", "CA", "IN"],
+          allowed_countries: ['GB', 'US', 'CA', 'IN'],
         },
         line_items: transformedItems,
-        mode: "payment",
+        mode: 'payment',
         success_url: `${process.env.HOST}/success`,
         cancel_url: `${process.env.HOST}/cart`,
         metadata: {
@@ -46,10 +47,10 @@ export default async (req, res) => {
       return res.status(200).json({ id: session.id });
     } catch (err) {
       console.error(err);
-      return res.status(400).json({ message: "Bad Request" });
+      return res.status(400).json({ message: 'Bad Request' });
     }
   } catch (err) {
     console.error(err);
-    return res.status(400).json({ message: "Bad Request" });
+    return res.status(400).json({ message: 'Bad Request' });
   }
 };
