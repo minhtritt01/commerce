@@ -102,7 +102,7 @@ function Layout({ children, admin, auth }) {
             <HeaderMobile />
             {children}
             <Footer />
-            <FacebookMsg />
+            {/* <FacebookMsg /> */}
             <BottomNavigation />
           </>
         )}

@@ -21,12 +21,12 @@ function MyApp({ Component, pageProps }) {
     <NextAuthProvider session={pageProps.session}>
       <SWRConfig
         value={{
-          refreshInterval: 1000,
+          refreshInterval: 20000,
           fetcher,
         }}
       >
         <Provider store={store}>
-          <div class='fb-customerchat' page_id='197681293439134'></div>
+          {/* <div class='fb-customerchat' page_id='197681293439134'></div> */}
           <Layout admin={Component?.admin} auth={Component?.auth}>
             <Component {...pageProps} />
             <ToastContainer limit={4} />
