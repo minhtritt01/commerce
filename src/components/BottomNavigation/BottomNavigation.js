@@ -74,9 +74,17 @@ function BottomNavigation() {
               Settings
             </span>
           </button>
+
           <button
             type='button'
             className='inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group'
+            onClick={() =>
+              window.open(
+                'https://m.me/197681293439134',
+                '_blank',
+                'noopener,noreferrer'
+              )
+            }
           >
             <svg
               className='w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500'

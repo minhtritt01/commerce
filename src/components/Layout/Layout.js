@@ -11,7 +11,7 @@ import Loader from 'react-loader-spinner';
 import HeaderMobile from '../Header/HeaderMobile';
 import HeaderDashboard from '../Header/HeaderDashboard';
 import BottomNavigation from '../BottomNavigation/BottomNavigation';
-import FacebookMsg from '../FacebookMsg/FacebookMsg';
+// import FacebookMsg from '../FacebookMsg/FacebookMsg';
 
 function Layout({ children, admin, auth }) {
   const [session, loading] = useSession();
@@ -102,7 +102,7 @@ function Layout({ children, admin, auth }) {
             <HeaderMobile />
             {children}
             <Footer />
-            <FacebookMsg />
+            {/* <FacebookMsg /> */}
             <BottomNavigation />
           </>
         )}

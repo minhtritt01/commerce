@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
         }}
       >
         <Provider store={store}>
-          <div className='fb-customerchat' page_id='197681293439134'></div>
+          {/* <div className='fb-customerchat' page_id='197681293439134'></div> */}
           <Layout admin={Component?.admin} auth={Component?.auth}>
             <Component {...pageProps} />
             <ToastContainer limit={4} />
