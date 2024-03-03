@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
 import { SWRConfig } from 'swr';
 import fetcher from '../util/fetch';
-
+import { appWithTranslation } from 'next-i18next';
 //Binding events.
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -37,4 +37,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
